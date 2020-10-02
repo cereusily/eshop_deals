@@ -6,9 +6,10 @@ PATH = '/Users/timothykung/Downloads/chromedriver'
 SCROLL_PAUSE_TIME = 1.6
 
 # Initializing for headless browser
-
 options = Options()
-options.headless = False
+
+# Turn to false if you want to see program scrolling; unsure of performance effect
+options.headless = True
 driver = webdriver.Chrome(PATH, options=options)
 
 # Accesses Nintendo Website
@@ -48,6 +49,7 @@ print("Finished scrolling through all games!")
 all_games = driver.find_elements_by_xpath("//h3[@class='b3']")
 all_games_price = driver.find_elements_by_xpath("//strong[@class='sale-price']")
 
+# Stores games and their prices in list
 games = [i.text for i in all_games]
 price = [i.text for i in all_games_price]
 
@@ -55,6 +57,7 @@ total = len(games)
 
 print(f"A total of {total} / {real_deals.text} have been scraped\n")
 
+# Generates dictionary to contain games + price
 dictionary = dict(zip(games, price))
 
 for game, price in dictionary.items():
