@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
 
+# User chromedriver path
 PATH = '/Users/timothykung/Downloads/chromedriver'
 SCROLL_PAUSE_TIME = 1.6
 
