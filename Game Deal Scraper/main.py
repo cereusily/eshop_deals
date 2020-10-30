@@ -4,7 +4,7 @@ import time
 
 # User chromedriver path
 PATH = '/Users/timothykung/Downloads/chromedriver'
-SCROLL_PAUSE_TIME = 1.6
+SCROLL_PAUSE_TIME = 3.0
 
 # Initializing for headless browser
 options = Options()
@@ -13,16 +13,22 @@ options = Options()
 options.headless = True
 driver = webdriver.Chrome(PATH, options=options)
 
-# Accesses Nintendo Website
-driver.get('https://www.nintendo.com/en_CA/games/game-guide/'
-           '#filter/:q=&dFR[generalFilters][0]=Deals&dFR[platform][0]=Nintendo%20Switch')
+# Accesses Nintendo Website for Switch Deals
+driver.get('https://www.nintendo.com/en_CA/games/game-guide'
+           '/#filter/:q=&dFR[generalFilters][0]=Deals&dFR[platform][0]=Nintendo%20Switch')
 
 # Confirmation of accessing website
 print("Accessed website!\n")
 print("Now scrolling...")
 
+# Waits for page to load
+time.sleep(SCROLL_PAUSE_TIME)
+
 # Scrolling / Clicking / Loading for more games / Returns number of deals
-real_deals = driver.find_element_by_id("result-count")
+real_deals = driver.find_element_by_id('result-count').text
+
+# Gives program time to read result-count
+time.sleep(SCROLL_PAUSE_TIME)
 
 # Get scroll height
 last_height = driver.execute_script("return document.body.scrollHeight")
@@ -56,7 +62,7 @@ price = [i.text for i in all_games_price]
 
 total = len(games)
 
-print(f"A total of {total} / {real_deals.text} have been scraped\n")
+print(f"A total of {total} out of {real_deals} have been scraped\n")
 
 # Generates dictionary to contain games + price
 dictionary = dict(zip(games, price))
