@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 
 # User chromedriver path
-PATH = '/Users/timothykung/Downloads/chromedriver'
+PATH = '/PATH'
 SCROLL_PAUSE_TIME = 3.0
 
 # Initializing for headless browser
